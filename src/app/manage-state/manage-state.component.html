@@ -1,0 +1,18 @@
+  <div class="jumbotron">
+    <h1 class="display-3">Manage states</h1>
+    <form class="form-inline add-item" [formGroup]="stateForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mx-sm-3">
+        <label for="new_state" class="sr-only">State</label>
+        <input type="text" class="form-control form-control-lg" id="new_state" placeholder="State name" formControlName="state">
+      </div>
+      <button type="submit" class="btn btn-primary"
+        [disabled]="!stateForm.valid">+</button>
+    </form>
+    <p class="lead">State list:</p>
+    <ul class="list-group col-lg-12"  dnd-sortable-container [sortableData]="states"  *ngFor="let state of states; let i = index">
+      <state-item [item]="state" [index]="i"></state-item>
+    </ul>
+    <span class="badge badge-info">DoubleClick by label to edit</span>
+    <span class="badge badge-primary">Drag and Drop to change ordering</span>
+    <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+  </div>

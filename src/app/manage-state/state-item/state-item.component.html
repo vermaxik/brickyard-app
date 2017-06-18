@@ -1,0 +1,13 @@
+<div dnd-sortable [sortableIndex]="index" (onDropSuccess)="changePosition($event, index)" [dragEnabled]="true" [dragData]="state">
+<li class="list-group-item justify-content-between" *ngIf="!deleted">
+  <label *ngIf="!editMode" (dblclick)=editState(state)>
+    {{state.state}}
+  </label>
+  <input *ngIf="editMode" type="text"
+      [(ngModel)]="state.state"
+      (keyup.enter)="saveState(state)"
+      (keyup.escape)="cancelEditState(state)"
+      (blur)="saveState(state)">
+  <span class="badge badge-default badge-pill" (click)=removeState(state)>Delete</span>
+</li>
+</div>
