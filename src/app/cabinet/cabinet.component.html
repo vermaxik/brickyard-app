@@ -1,3 +1,8 @@
-<p>
-  cabinet works!
-</p>
+<form class="form-inline">
+  <label class="mr-sm-2" for="inlineFormCustomSelect">Select state:</label>
+  <select name="" id="" class="custom-select">
+    <option *ngFor="let state of states" [value]="state">{{state.state}}</option>
+  </select>
+  &nbsp;
+  <button class="btn btn-primary"  type="submit">Change</button>
+</form>

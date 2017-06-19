@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabinetComponent implements OnInit {
 
-  constructor() { }
+  states: Array<any>;
+
+  constructor(private stateService: StateService) { }
 
   ngOnInit() {
+    this.stateService.all().subscribe(data => {
+      this.states = data;
+    })
   }
 
 }

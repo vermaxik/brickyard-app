@@ -1,3 +1,8 @@
-<p>
-  login works!
-</p>
+<div class="jumbotron">
+  <p class="lead">Please sign in:</p>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" class="form-inline">
+    <input type="text" placeholder="username" formControlName="login" class="form-control mb-2 mr-sm-2 mb-sm-0">
+    <input type="password" placeholder="password" formControlName="password" class="form-control mb-2 mr-sm-2 mb-sm-0">
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary" style="font-size:14px;">Submit</button>
+  </form>
+</div>

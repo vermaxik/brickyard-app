@@ -1,0 +1,9 @@
+.jumbotron form {
+  padding-left: 15%;
+}
+.jumbotron > button {
+  font-size: 14px;
+}
+.jumbotron .btn {
+  padding: .5rem 1rem;
+}

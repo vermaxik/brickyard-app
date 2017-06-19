@@ -4,24 +4,26 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ManageStateModule } from './manage-state/manage-state.module';
+import { LoginModule } from './login/login.module';
 
 import { AppComponent } from './app.component';
 import { CabinetComponent } from './cabinet/cabinet.component';
-import { LoginComponent } from './login/login.component';
+
+import { AdminGuard, UserGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabinetComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    ManageStateModule
+    ManageStateModule,
+    LoginModule
   ],
-  providers: [],
+  providers: [AdminGuard, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

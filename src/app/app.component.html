@@ -1,1 +1,5 @@
+<nav class="text-right" *ngIf="auth.isLoggedIn">
+  <a href="javascript:void(0);" (click)="auth.logout()" class="btn">Logout</a>
+</nav>
+
 <router-outlet></router-outlet>
