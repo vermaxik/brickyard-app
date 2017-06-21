@@ -10,8 +10,4 @@ export class AppComponent {
 
   constructor(private auth: AuthService){}
 
-  // logout() {
-  //   console.log('logout');
-  //   this.auth.logout();
-  // }
 }

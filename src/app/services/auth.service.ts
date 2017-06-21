@@ -7,8 +7,9 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthService {
-  private authUrl:string = 'http://localhost:3000/api/v1/authenticate'
-  isLoggedIn = false;
+  private authUrl:string = 'http://localhost:3000/api/v1/authenticate';
+  private stateUrl:string = 'http://localhost:3000/api/v1/state';
+  isLoggedIn:boolean = false;
   role:string;
 
   constructor(private http: Http,
@@ -21,9 +22,8 @@ export class AuthService {
   }
 
   token(): Observable<any> {
-    let token = localStorage.getItem('token_id');
-    if(token) {
-      return this.http.get(`${this.authUrl}/${token}`)
+    if(this.getToken()) {
+      return this.http.get(`${this.authUrl}/${this.getToken()}`)
             .map((result: Response) => result.json())
             .catch(this.handleError);
     } else {
@@ -31,21 +31,29 @@ export class AuthService {
     }
   }
 
+  changeState(newStateId:number, resetState:boolean = false): Observable<any> {
+    let params = { token_id: this.getToken(), main_id: newStateId, reset: resetState  }
+    return this.http.put(this.stateUrl, params)
+            .map((result: Response) => result.json())
+            .catch(this.handleError);
+  }
 
   logout() {
-    console.log("log from auth");
     localStorage.removeItem('token_id');
     this.isLoggedIn = false;
     this.router.navigateByUrl('/');
   }
 
+  private getToken() {
+    return localStorage.getItem('token_id');
+  }
+
   private handleError (error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
       const err = body.errors || JSON.stringify(body);
-      errMsg = `Error: ${err}`;
+      errMsg = JSON.parse(err);
     } else {
       errMsg = error.message ? error.message : error.toString();
     }

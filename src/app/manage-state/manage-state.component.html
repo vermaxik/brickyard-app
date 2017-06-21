@@ -3,7 +3,7 @@
     <form class="form-inline add-item" [formGroup]="stateForm" (ngSubmit)="onSubmit()">
       <div class="form-group mx-sm-3">
         <label for="new_state" class="sr-only">State</label>
-        <input type="text" class="form-control form-control-lg" id="new_state" placeholder="State name" formControlName="state">
+        <input type="text" class="form-control form-control-lg" id="new_state" placeholder="State name" formControlName="state" autofocus>
       </div>
       <button type="submit" class="btn btn-primary"
         [disabled]="!stateForm.valid">+</button>
@@ -14,5 +14,4 @@
     </ul>
     <span class="badge badge-info">DoubleClick by label to edit</span>
     <span class="badge badge-primary">Drag and Drop to change ordering</span>
-    <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
   </div>

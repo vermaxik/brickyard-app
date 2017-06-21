@@ -32,6 +32,7 @@ export class ManageStateComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.states.push(res);
+        this.stateForm.reset();
       }, error => {
         console.log('error')
       });
